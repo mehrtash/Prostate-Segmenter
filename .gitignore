@@ -1,0 +1,41 @@
+## General
+
+# Compiled python
+*.pyc
+
+# IPython notebook checkpoints
+.ipynb_checkpoints
+
+# Editor temporaries
+*.swp
+*~
+
+## Caffe
+# binary proto
+*.binaryproto
+*.caffemodel
+*.caffemodel.h5
+*.solverstate
+*.solverstate.h5
+
+# data file
+*.npy
+*.zip
+*.tif
+*lmdb
+*leveldb
+*.hdf5
+
+
+#image files
+*.tif
+
+#matlab
+.mat
+.save
+
+#compressed files
+.tar.gz
+
+# pycharm
+.idea
