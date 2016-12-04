@@ -19,7 +19,7 @@
 *.solverstate.h5
 
 # data file
-*.npy
+# *.npy
 *.zip
 *.tif
 *lmdb
