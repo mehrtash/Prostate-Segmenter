@@ -2,6 +2,11 @@
 
 ## CPU
 
+##### Downloading the docker image from the hub
+```
+docker pull deepinfer/prostate-segmenter-cpu
+```
+
 ##### Building the docker
 ```
 docker build -t prostate-segmenter-cpu -f Dockerfile.cpu .
