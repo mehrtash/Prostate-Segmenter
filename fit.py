@@ -12,37 +12,38 @@ from prostatesegmenter.segmenter import Segmenter
 
 
 def main(argv):
-    inputfile = ''
-    outputfile = ''
+    InputVolume = ''
+    OutputLabel = ''
     try:
-        opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+        opts, args = getopt.getopt(argv, "hi:o:", ["ifile=", "ofile="])
     except getopt.GetoptError:
-        print 'usage: fit.py -i <inputfile> -o <outputfile>'
+        print 'usage: fit.py -InputVolume <InputVolumePath> -OutputLabel <OutputLabelPath>'
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print 'test.py -i <inputfile> -o <outputfile>'
+            print 'test.py -InputVolume <InputVolume> -OutputLabel <OutputLabel>'
             sys.exit()
-        elif opt in ("-i", "--input"):
-            inputfile = arg
-        elif opt in ("-o", "--output"):
-            outputfile = arg
-    if inputfile == '' or outputfile == '':
-        print 'usage: fit.py -i <inputfile> -o <outputfile>'
+        elif opt in ("-InputVolume", "--input"):
+            InputVolume = arg
+        elif opt in ("-OutputLabel", "--output"):
+            OutputLabel = arg
+    if InputVolume == '' or OutputLabel == '':
+        print 'usage: fit.py -InputVolume <InputVolumePath> -OutputLabel <OutputLabelPath>'
         sys.exit()
-    if os.path.isfile(inputfile) and os.path.isdir(os.path.dirname(outputfile)):
+    if os.path.isfile(InputVolume) and os.path.isdir(os.path.dirname(OutputLabel)):
         ds = ProstateData()
-        model = unet1.model(weights=True, summary=True)
+        model = unet1.model(weights=True, summary=False)
         cnn = CNNModel(data_streamer=ds, model=model)
         rows = 128
         cols = 128
         #
         sg = Segmenter(cnn)
-        sg.segment_prostate_volume(inputfile, outputfile, rows, cols)
+        sg.segment_prostate_volume(InputVolume, OutputLabel, rows, cols)
     else:
         print "Make sure the input file exists and the output file directory is valid."
-        print "inputfile: ", inputfile
-        print "outputfile: ", outputfile
+        print "InputVolumePath: ", InputVolume
+        print "OutputLabelPath: ", OutputLabel
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
