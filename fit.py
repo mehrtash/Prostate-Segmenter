@@ -20,12 +20,13 @@ def main(argv):
         print 'usage: fit.py -InputVolume <InputVolumePath> -OutputLabel <OutputLabelPath>'
         sys.exit(2)
     for opt, arg in opts:
+        print(opts)
         if opt == '-h':
-            print 'test.py -InputVolume <InputVolume> -OutputLabel <OutputLabel>'
+            print 'fit.py -InputVolume <InputVolume> -OutputLabel <OutputLabel>'
             sys.exit()
-        elif opt in ("-InputVolume", "--input"):
+        elif opt in ("--InputVolume", "-i"):
             InputVolume = arg
-        elif opt in ("-OutputLabel", "--output"):
+        elif opt in ("--OutputLabel", "-o"):
             OutputLabel = arg
     if InputVolume == '' or OutputLabel == '':
         print 'usage: fit.py -InputVolume <InputVolumePath> -OutputLabel <OutputLabelPath>'
