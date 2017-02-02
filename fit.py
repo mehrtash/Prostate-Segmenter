@@ -20,7 +20,6 @@ def main(argv):
         print 'usage: fit.py -InputVolume <InputVolumePath> -OutputLabel <OutputLabelPath>'
         sys.exit(2)
     for opt, arg in opts:
-        print(opts)
         if opt == '-h':
             print 'fit.py -InputVolume <InputVolume> -OutputLabel <OutputLabel>'
             sys.exit()

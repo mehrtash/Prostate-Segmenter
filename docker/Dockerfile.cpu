@@ -39,6 +39,8 @@ RUN pip install --upgrade pip && \
 RUN mkdir /home/deepinfer/.keras && \
     echo { '"image_dim_ordering"': '"th"', '"epsilon"': 1e-07, '"floatx"': '"float32"', '"backend"': '"theano"'}>/home/deepinfer/.keras/keras.json
 
+RUN echo 'hi'
+
 RUN mkdir -p /home/deepinfer/github && \
     mkdir /home/deepinfer/data && \
     cd /home/deepinfer/github/ && \
