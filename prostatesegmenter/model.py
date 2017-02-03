@@ -14,6 +14,8 @@ class CNNModel(object):
         return input_array
 
     def predict_test(self, input_test_slices_arr):
+        print("Data preprocessing.")
         test_slices_arr = self.preprocess(input_test_slices_arr, self.mean_train)
+        print("Predicting the labelmap.")
         test_slices_prediction = self.model.predict(test_slices_arr, verbose=1)
         return test_slices_prediction

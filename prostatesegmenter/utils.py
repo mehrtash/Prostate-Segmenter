@@ -25,7 +25,7 @@ def dice_coef_loss(y_true, y_pred):
 def reshape_volume(nda_vol, rows, cols):
     from cv2 import resize, INTER_CUBIC
     nda_vol_reshaped = np.ndarray((nda_vol.shape[0], rows, cols), dtype=np.uint8)
-    for i in xrange(len(nda_vol)):
+    for i in range(len(nda_vol)):
         nda_vol_reshaped[i] = resize(nda_vol[i], (cols, rows), interpolation= INTER_CUBIC)
     return nda_vol_reshaped
 
