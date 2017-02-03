@@ -13,8 +13,8 @@ from prostatesegmenter.segmenter import Segmenter
 
 
 def main(argv):
-    inputfile = ''
-    outputfile = ''
+    InputVolume = ''
+    OutputLabel = ''
     try:
         opts, args = getopt.getopt(argv, "hi:o:", ["InputVolume=", "OutputLabel="])
     except getopt.GetoptError:
@@ -25,13 +25,13 @@ def main(argv):
             print('fit.py -InputVolume <InputVolumePath> --OutputLabel <OutputLabelPath>')
             sys.exit()
         elif opt in ("-i", "--InputVolume"):
-            inputfile = arg
+            InputVolume = arg
         elif opt in ("-o", "--OutputLabel"):
-            outputfile = arg
-    if inputfile == '' or outputfile == '':
-        print('usage: fit.py -InputVolume <inputfile> -OutputLabel <outputfile>')
+            OutputLabel = arg
+    if InputVolume == '' or OutputLabel == '':
+        print('usage: fit.py -InputVolume <InputVolumePath> -OutputLabel <OutputLabelPath>')
         sys.exit()
-    if os.path.isfile(inputfile) and os.path.isdir(os.path.dirname(outputfile)):
+    if os.path.isfile(InputVolume) and os.path.isdir(os.path.dirname(OutputLabel)):
         ds = ProstateData()
         print("Making the model.")
         model = unet1.model(weights=True, summary=False)
@@ -39,13 +39,13 @@ def main(argv):
         rows = 128
         cols = 128
         #
-        print("Starting the Segmenter")
+        print("Starting the segmenter.")
         sg = Segmenter(cnn)
-        sg.segment_prostate_volume(inputfile, outputfile, rows, cols)
+        sg.segment_prostate_volume(InputVolume, OutputLabel, rows, cols)
     else:
         print("Make sure the input file exists and the output file directory is valid.")
-        print("inputfile: ", inputfile)
-        print("outputfile: ", outputfile)
+        print("InputVolume: ", InputVolume)
+        print("OutputLabel: ", OutputLabel)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
